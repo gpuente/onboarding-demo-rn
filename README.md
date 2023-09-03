@@ -1,6 +1,7 @@
 ## Onboarding Demo App
 
-<video src="https://github.com/gpuente/onboarding-demo-rn/raw/develop/demo.mp4" type="video/mp4" heigth="500" />
+https://github.com/gpuente/onboarding-demo-rn/assets/20387722/d5f08b31-3b23-474b-80ae-e2d7e2aacc15
+
 
 Onboarding demo built with React Native, Reanimated 3 and Lottie.
 
