@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import LottieView from 'lottie-react-native';
-import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, View, useWindowDimensions, TouchableOpacity, Linking } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 import Animated, {
   Extrapolate,
   SharedValue,
@@ -80,7 +81,28 @@ export const OnboardingItem = (props: OnboardingItemProps) => {
           loop
         />
       </Animated.View>
-      <Text style={[styles.title, { color: item.textColor }]}>{item.text}</Text>
+      <Text
+        style={[
+          styles.title,
+          { color: item.textColor },
+          { fontSize: item.fontSize || 44 }
+        ]}>
+          {item.text}
+        </Text>
+      {item.links && (
+        <View style={styles.linksContainer}>
+          {item.links.map(({ icon, url }) => (
+            <TouchableOpacity
+              key={url}
+              onPress={async () => {
+                await Linking.openURL(url);
+              }}
+            >
+              <FontAwesome name={icon} size={60} color="black"  />
+            </TouchableOpacity>
+          ))}
+        </View>
+      )}
     </View>
   )
 }
@@ -94,7 +116,6 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    fontSize: 44,
     fontWeight: 'bold',
     marginBottom: 10,
     marginHorizontal: 20
@@ -103,5 +124,11 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     alignItems: 'center',
     justifyContent: 'flex-end',
+  },
+  linksContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 40,
   },
 });

@@ -50,7 +50,7 @@ export const Root: React.FC = () => {
         <CustomButton
           x={x}
           dataLength={data.length}
-          flatlistRef={flatListRef as React.RefObject<FlatList<OnboardingData>>}
+          flatlistRef={flatListRef}
           flatlistIndex={flatListIndex}
         />
       </View>

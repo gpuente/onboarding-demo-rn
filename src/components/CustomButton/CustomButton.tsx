@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Linking,
   StyleSheet,
   TouchableOpacity,
   useWindowDimensions,
@@ -25,14 +26,14 @@ export const CustomButton: React.FC<CustomButtonProps> = (props) => {
   const { x, dataLength, flatlistRef, flatlistIndex } = props;
   const { width: SCREEN_WIDTH } = useWindowDimensions();
 
-  const onPress = () => {
+  const onPress = async () => {
     if (flatlistIndex.value < dataLength - 1) {
       // @ts-ignore
       flatlistRef.current?.scrollToIndex({
         index: flatlistIndex.value + 1,
       });
     } else {
-      console.log('Navigate to the next screen');
+      await Linking.openURL('https://gpuente.me');
     }
   };
 
@@ -46,8 +47,8 @@ export const CustomButton: React.FC<CustomButtonProps> = (props) => {
   const animatedColor = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       x.value,
-      [0, SCREEN_WIDTH, 2 * SCREEN_WIDTH],
-      ['#005b4f', '#1e2169', '#f15937'],
+      [0, SCREEN_WIDTH, 2 * SCREEN_WIDTH, 3 * SCREEN_WIDTH],
+      ['#005b4f', '#1e2169', '#f15937', '#1e2169'],
     );
 
     return { backgroundColor };
@@ -79,7 +80,7 @@ export const CustomButton: React.FC<CustomButtonProps> = (props) => {
     <TouchableOpacity onPress={onPress}>
       <Animated.View style={[styles.container, animatedColor, buttonAnimationStyles]}>
         <Animated.Text style={[styles.text, textAnimationStyle]}>
-          Get Started
+          Portfolio
         </Animated.Text>
         <Animated.Image
           style={[styles.arrow, arrowAnimationStyle]}

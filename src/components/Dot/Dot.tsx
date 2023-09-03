@@ -42,8 +42,8 @@ export const Dot: React.FC<DotProps> = (props) => {
 
     const backgroundColor = interpolateColor(
       x.value,
-      [0, SCREEN_WIDTH, 2 * SCREEN_WIDTH],
-      ['#005b4f', '#1e2169', '#f15937'],
+      [0, SCREEN_WIDTH, 2 * SCREEN_WIDTH, 3 * SCREEN_WIDTH],
+      ['#005b4f', '#1e2169', '#f15937', '#1e2169'],
     );
 
     return { width, opacity, backgroundColor };
